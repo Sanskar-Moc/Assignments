@@ -5,10 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.assignments.searching.SearchingAlgos;
 import com.assignments.sortalgorithms.SortingAlgorithmsDemo;
 
 public class TestDataStructures {
-	
+	static int dp[];
 	public static void testDoublyLLs() {
 		MyDoublyLinkedList<Integer>mdll=new MyDoublyLinkedList<>();
 		//Doubly Linked List
@@ -201,9 +202,54 @@ public class TestDataStructures {
 		}
 		System.out.println(ans);
 	}
+	
+	public static void testBinarySearch() {
+		int a[]= {25,35,67,88,93};
+		int low=0;
+		int high=a.length-1;
+		System.out.println(SearchingAlgos.binarySearch(88, a, low, high));
+		System.out.println(SearchingAlgos.binarySearch(23, a, low, high));
+	}
+	public static void display(int a[]) {
+		for(int x:a)System.out.print(x+" ");
+		System.out.println();
+	}
+	public static void testMergeSort() {
+		int a[]= {5,8,4,3,9,7};
+		display(a);
+		SortingAlgorithmsDemo.mergeSort(a, 6, 0, 5);
+		display(a);
+	}
+	
+	public static int factorialRec(int n) {
+		if(n==1) return 1;
+		else {
+			return n*factorialRec(n-1);
+		}
+	}
+	public static int factorialMem(int n) {
+		if(n==1)return 1;
+		if(dp[n]!=0)return dp[n];
+		
+		return dp[n]=n*factorialMem(n-1);
+	}
+	public static int factorialTab(int n) {
+		int prod=1;
+		for(int i=2;i<=n;i++) {
+			prod*=i;
+		}
+		return prod;
+	}
 	public static void main(String[] args) {
 
-		testBinTree();
+//		System.out.println(factorialRec(5));
+//		dp=new int[6];
+//		System.out.println(factorialMem(5));
+//		System.out.println(factorialTab(5));
+		testMergeSort();
+//		testBinarySearch();
+		
+//		testBinTree();
 //		testTrie();
 		
 //		testLLs();
